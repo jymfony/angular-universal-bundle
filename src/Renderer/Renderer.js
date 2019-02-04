@@ -1,8 +1,10 @@
 const Response = Jymfony.Component.HttpFoundation.Response;
+const ContainerAwareInterface = Jymfony.Component.DependencyInjection.ContainerAwareInterface;
+const ContainerAwareTrait = Jymfony.Component.DependencyInjection.ContainerAwareTrait;
 
 const { INITIAL_CONFIG, renderModuleFactory } = require('@angular/platform-server');
 const { provideModuleMap } = require('@nguniversal/module-map-ngfactory-loader');
-const { REQUEST, RESPONSE } = require('@jymfony/angular-universal-bridge');
+const { REQUEST, RESPONSE, CONTAINER } = require('@jymfony/angular-universal-bridge');
 const fs = require('fs');
 const path = require('path');
 
@@ -11,7 +13,7 @@ const templateCache = {};
 /**
  * @memberOf Jymfony.Bundle.AngularUniversalBundle.Renderer
  */
-class Renderer {
+class Renderer extends implementationOf(ContainerAwareInterface, ContainerAwareTrait) {
     /**
      * Constructor.
      *
@@ -122,6 +124,7 @@ class Renderer {
                 this._moduleMap,
                 { provide: REQUEST, useValue: request },
                 { provide: RESPONSE, useValue: response },
+                { provide: CONTAINER, useValue: this._container },
                 {
                     provide: INITIAL_CONFIG,
                     useValue: {

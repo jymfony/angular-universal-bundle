@@ -32,6 +32,7 @@ container.register(Jymfony.Bundle.AngularUniversalBundle.Renderer.Renderer)
     .addArgument('%jymfony.angular.ts_config_path%')
     .addArgument(new Reference(Jymfony.Bundle.AngularUniversalBundle.Compiler.CompilerInterface))
     .addArgument(new Reference(Jymfony.Bundle.AngularUniversalBundle.Module.CompilerInterface))
+    .addMethodCall('setContainer', [ new Reference('service_container') ])
 ;
 
 container.register(Jymfony.Bundle.AngularUniversalBundle.CacheWarmer.CompilerWarmer)
