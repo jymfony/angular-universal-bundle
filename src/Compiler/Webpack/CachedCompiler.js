@@ -113,6 +113,10 @@ class CachedCompiler {
 
             const requires = [];
             for (const [name, asset] of __jymfony.getEntries(stats.compilation.assets)) {
+                if (! name.match(/\.js$/i)) {
+                    continue;
+                }
+
                 const file = new File(this._cacheDir + '/' + name);
 
                 const openFile = await file.openFile('w');
