@@ -72,6 +72,7 @@ class ConfigurationBuilder {
 
                     callback();
                 }],
+                output: { futureEmitAssets: false },
             }
         ]);
     }
