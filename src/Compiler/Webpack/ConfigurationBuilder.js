@@ -46,6 +46,8 @@ class ConfigurationBuilder {
                 platform: 'server',
                 scripts: [],
                 styles: [],
+                optimization: {},
+                sourceMap: {},
             },
             tsConfig,
             tsConfigPath: this._tsConfigPath,
