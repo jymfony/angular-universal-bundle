@@ -2,6 +2,7 @@ const Command = Jymfony.Component.Console.Command.Command;
 const InputOption = Jymfony.Component.Console.Input.InputOption;
 const JymfonyStyle = Jymfony.Component.Console.Style.JymfonyStyle;
 const Filesystem = Jymfony.Component.Filesystem.Filesystem;
+const FileStreamWrapper = Jymfony.Component.Filesystem.StreamWrapper.FileStreamWrapper;
 const path = require('path');
 
 /**
@@ -49,6 +50,7 @@ class BuildCommand extends Command {
             const dir = path.dirname(bundle);
 
             const destDir = path.resolve(process.cwd(), outDir);
+            FileStreamWrapper.clearStatCache();
             await fs.mirror(dir, destDir);
             await fs.remove(path.join(destDir, 'universal_app.js.meta'));
         }

@@ -97,7 +97,7 @@ class CachedCompiler {
                             continue;
                         }
 
-                        if (m[1] === 'external') {
+                        if (m[1] === 'external' || (!! m[2] && m[2].match(/\s*sync\s*.+$/))) {
                             continue;
                         }
 
