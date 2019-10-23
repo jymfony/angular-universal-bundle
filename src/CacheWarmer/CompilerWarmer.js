@@ -23,7 +23,7 @@ class CompilerWarmer extends implementationOf(CacheWarmer) {
     /**
      * @inheritdoc
      */
-    async warmUp(cacheDir) {
+    async warmUp() {
         await this._compiler.compile();
     }
 }

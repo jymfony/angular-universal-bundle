@@ -26,7 +26,7 @@ class BuildCommand extends Command {
     configure() {
         this.name = 'angular:build-universal';
         this.description = 'Builds the Angular universal bundle';
-        this.help = `The <info>%command.name%</info> builds the Angular Universal application bundle.`;
+        this.help = 'The <info>%command.name%</info> builds the Angular Universal application bundle.';
 
         this.addOption('outDir', 'o', InputOption.VALUE_REQUIRED, 'The output dir');
     }

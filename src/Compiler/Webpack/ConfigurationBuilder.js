@@ -62,7 +62,7 @@ class ConfigurationBuilder {
 
         const host = new NodeJsAsyncHost();
 
-        let webpackExtraConfigs = [];
+        const webpackExtraConfigs = [];
         for (const config of this._webpackConfigPaths) {
             if (! fs.existsSync(config)) {
                 throw new ConfigurationFileNotFoundException(config);
@@ -80,14 +80,14 @@ class ConfigurationBuilder {
             {
                 target: 'node',
                 mode: 'none',
-                // this makes sure we include node_modules and other 3rd party libraries
-                externals: [(context, request, callback) => {
+                // This makes sure we include node_modules and other 3rd party libraries
+                externals: [ (context, request, callback) => {
                     if (/^@angular|^@nguniversal|^@jymfony/.test(request)) {
                         return callback(null, 'commonjs ' + request);
                     }
 
                     callback();
-                }],
+                } ],
                 output: { futureEmitAssets: false },
             },
             ...webpackExtraConfigs,

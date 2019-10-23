@@ -14,8 +14,8 @@ class AngularUniversalBundle extends Bundle {
         global.__Zone_disable_fs = true;
         global.__Zone_disable_EventEmitter = true;
         global.__Zone_disable_nextTick = true;
-        global.__Zone_disable_handleUnhandledPromiseRejection  = true;
-        global.__Zone_disable_crypto  = true;
+        global.__Zone_disable_handleUnhandledPromiseRejection = true;
+        global.__Zone_disable_crypto = true;
 
         require('zone.js/dist/zone-node');
         const { enableProdMode } = require('@angular/core');

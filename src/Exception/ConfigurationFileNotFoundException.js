@@ -8,10 +8,13 @@ class ConfigurationFileNotFoundException extends RuntimeException {
      * @param {string} filePath
      */
     __construct(filePath) {
-        super.__construct('');
+        super.__construct(__jymfony.sprintf(`Could not find configuration file at path "%s".`, filePath));
 
-        this.message = `Could not find configuration file at path "${filePath}".`;
-
+        /**
+         * @type {string}
+         *
+         * @private
+         */
         this._filePath = filePath;
     }
 

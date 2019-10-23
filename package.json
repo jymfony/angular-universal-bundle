@@ -33,6 +33,10 @@
         "webpack": "^4.0",
         "webpack-merge": "^4.0"
     },
+    "devDependencies": {
+        "@jymfony/framework-bundle": "^0.1.0-alpha.18",
+        "@jymfony/kernel": "^0.1.0-alpha.18"
+    },
     "homepage": "https://github.com/jymfony/angular-universal-bundle#readme",
     "config": {
         "jymfony-autoload": {

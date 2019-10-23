@@ -1,7 +1,7 @@
 const CompilerInterface = Jymfony.Bundle.AngularUniversalBundle.Module.CompilerInterface;
 
 const { ResourceLoader } = require('@angular/compiler');
-const { Type, NgModuleFactory, CompilerFactory } = require('@angular/core');
+const { NgModuleFactory, CompilerFactory } = require('@angular/core');
 const { platformDynamicServer } = require('@angular/platform-server');
 
 /**
@@ -30,9 +30,9 @@ class Compiler extends implementationOf(CompilerInterface) {
         this._compiler = compilerFactory.createCompiler([
             {
                 providers: [
-                    { provide: ResourceLoader, useClass: Jymfony.Bundle.AngularUniversalBundle.Loader.FileLoader, deps: [] }
-                ]
-            }
+                    { provide: ResourceLoader, useClass: Jymfony.Bundle.AngularUniversalBundle.Loader.FileLoader, deps: [] },
+                ],
+            },
         ]);
     }
 
@@ -52,7 +52,7 @@ class Compiler extends implementationOf(CompilerInterface) {
 
         // If module factory is cached
         if (moduleFactory) {
-          return moduleFactory;
+            return moduleFactory;
         }
 
         // Compile the module and cache it

@@ -66,7 +66,9 @@ class CachedCompiler {
             const webpack = require('webpack');
             const MemoryFs = require('memory-fs');
 
-            try { __jymfony.mkdir(this._cacheDir); } catch (e) { }
+            try {
+                __jymfony.mkdir(this._cacheDir);
+            } catch (e) { }
             const configuration = await this._configurationBuilder.getConfiguration();
             configuration.plugins.push(new webpack.ProgressPlugin({
                 profile: true,
@@ -97,7 +99,7 @@ class CachedCompiler {
                             continue;
                         }
 
-                        if (m[1] === 'external' || (!! m[2] && m[2].match(/\s*sync\s*.+$/))) {
+                        if ('external' === m[1] || (!! m[2] && m[2].match(/\s*sync\s*.+$/))) {
                             continue;
                         }
 
@@ -112,7 +114,7 @@ class CachedCompiler {
             }
 
             const requires = [];
-            for (const [name, asset] of __jymfony.getEntries(stats.compilation.assets)) {
+            for (const [ name, asset ] of __jymfony.getEntries(stats.compilation.assets)) {
                 if (! name.match(/\.js$/i)) {
                     continue;
                 }
