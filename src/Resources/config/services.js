@@ -17,6 +17,7 @@ container.register(Jymfony.Bundle.AngularUniversalBundle.Compiler.Webpack.Config
     .addArgument('%jymfony.angular.ts_config_path%')
     .addArgument('%jymfony.angular.main_ts%')
     .addArgument('%kernel.project_dir%')
+    .addArgument('%jymfony.angular.webpack_extra_config_paths%')
 ;
 
 container.register(Jymfony.Bundle.AngularUniversalBundle.Compiler.Webpack.CachedCompiler)

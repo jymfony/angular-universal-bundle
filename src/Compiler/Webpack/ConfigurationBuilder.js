@@ -1,3 +1,6 @@
+const ConfigurationFileNotFoundException = Jymfony.Bundle.AngularUniversalBundle.Exception.ConfigurationFileNotFoundException;
+
+const fs = require('fs');
 const path = require('path');
 
 /**
@@ -12,12 +15,14 @@ class ConfigurationBuilder {
      * @param {string} tsConfigPath
      * @param {string} mainTs
      * @param {string} rootDir
+     * @param {string[]} webpackConfigPaths
      * @param {boolean} aot
      */
-    __construct(tsConfigPath, mainTs, rootDir, aot = true) {
+    __construct(tsConfigPath, mainTs, rootDir, webpackConfigPaths, aot = true) {
         this._tsConfigPath = tsConfigPath;
         this._mainTs = mainTs;
         this._rootDir = rootDir;
+        this._webpackConfigPaths = webpackConfigPaths;
         this._aot = aot;
     }
 
@@ -56,6 +61,16 @@ class ConfigurationBuilder {
         };
 
         const host = new NodeJsAsyncHost();
+
+        let webpackExtraConfigs = [];
+        for (const config of this._webpackConfigPaths) {
+            if (! fs.existsSync(config)) {
+                throw new ConfigurationFileNotFoundException(config);
+            }
+
+            webpackExtraConfigs.push(require(config));
+        }
+
         return webpackMerge([
             webpackConfigs.getCommonConfig(wco),
             webpackConfigs.getServerConfig(wco),
@@ -74,7 +89,8 @@ class ConfigurationBuilder {
                     callback();
                 }],
                 output: { futureEmitAssets: false },
-            }
+            },
+            ...webpackExtraConfigs,
         ]);
     }
 }
