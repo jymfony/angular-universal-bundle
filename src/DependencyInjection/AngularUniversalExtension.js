@@ -17,13 +17,15 @@ class AngularUniversalExtension extends Extension {
         const config = processor.processConfiguration(this.getConfiguration(), configs);
 
         container.setParameter('jymfony.angular.ts_config_path', config.ts_config);
+        container.setParameter('jymfony.angular.webpack_extra_config_paths', config.webpack_extra_configs);
         container.setParameter('jymfony.angular.main_ts', config.main);
 
         const loader = new JsFileLoader(container, new FileLocator(path.join(__dirname, '..', 'Resources', 'config')));
         loader.load('services.js');
 
         container.getDefinition(Jymfony.Bundle.AngularUniversalBundle.Compiler.Webpack.ConfigurationBuilder)
-            .addArgument(config.aot);
+            .addArgument(config.aot)
+        ;
     }
 }
 

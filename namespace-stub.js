@@ -34,6 +34,11 @@ Jymfony.Bundle.AngularUniversalBundle = {
     /**
      * @namespace
      */
+    Exception: {},
+
+    /**
+     * @namespace
+     */
     Loader: {},
 
     /**
